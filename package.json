@@ -1,0 +1,25 @@
+{
+  "name": "mongoose-harmony-gridfs",
+  "version": "0.1.0",
+  "description": "Mongoose plugin for GridFS based on ES6 Harmony",
+  "author": "Dexter Miguel <divmgl@gmail.com>",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:divmgl/mongoose-harmony-gridfs.git"
+  },
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "gridfs",
+    "plugin"
+  ],
+  "dependencies": {
+    "mongoose": "3.8.x",
+    "q": "1.1.2"
+  },
+  "licence": "MIT",
+  "engines": {
+    "node": ">=0.11.13"
+  }
+}
