@@ -1,6 +1,6 @@
 {
   "name": "mongoose-harmony-gridfs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mongoose plugin for GridFS based on ES6 Harmony",
   "author": "Dexter Miguel <divmgl@gmail.com>",
   "main": "./index.js",

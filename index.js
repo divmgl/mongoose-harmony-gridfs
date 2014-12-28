@@ -21,18 +21,20 @@ module.exports = function(schema, options){
     options.keys.forEach(function(key){
         schema.virtual(key).get(function(){
             var id = this.get(linkPropertyName + '.' + key),
-                gridFS = new Grid(mongoose.connection.db, bucket);              
+                gridFS = Grid(mongoose.connection.db, bucket);              
 
             return Q.Promise(function(resolve, reject, notify){
+                if (id == null) return resolve(null);
+
                 gridFS.get(id, function(err, buffer){
-                    if (err) reject(err);
-                    resolve(buffer);
+                    if (err) resolve(null);
+                    else resolve(buffer);
                 });
             });
         });
         schema.virtual(key).set(function(value){
             var self = this,
-                gridFS = new Grid(mongoose.connection.db),
+                gridFS = Grid(mongoose.connection.db),
                 buffer = new Buffer(value),
                 previous = this.get(linkPropertyName + '.' + key);
 
