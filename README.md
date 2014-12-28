@@ -6,6 +6,14 @@ Mongoose plugin for GridFS based on ES6 Harmony
 ## Purpose
 Store large documents in a MongoDB database using Mongoose with a painless syntax. This project should only be used with generator heavy projects, such as Koa projects.
 
+## Installation
+
+You can download this plug-in through NPM.
+
+```node
+npm install mongoose-harmony-gridfs 
+```
+
 ## Usage
 ```javascript
 var mongoose = require('mongoose'),
