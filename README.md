@@ -53,10 +53,17 @@ Please be wary of key usage. Your original schema **should not contain the same 
 Once you've created a new instance, you can start saving buffers right away.
 ```javascript
 var user = new Profile()
-var data = "This is a random string!"
-user.photo = new Buffer(data) // This sends document information immediately to the database
+var data = "This is a random string!";
+user.photo = { buffer: data }; // This sends document information immediately to the database
 ```
-Information is sent to the database immediately. Any existing information that was previously stored in the database is removed and replaced with the new buffer.
+Information is sent to the database immediately. This plug-in will convert all data in the `buffer` property to a buffer that can be written to a GridFS store. Any existing information that was previously stored in the database is removed and replaced with the new buffer.
+
+You can also store metadata regarding your file when saving to the database.
+
+```javascript
+var data = { buffer: "This is a random string!", metadata: { user: "mike", id: 23415 } };
+user.photo = data;
+```
 
 #### Loading
 If you can yield values because you are calling from a generator, you can yield for a database value. This will return a buffer with all contents in the file.
@@ -82,5 +89,10 @@ promise.done(function(data){
     throw err;
 });
 ```
+If you have stored metadata with your file, you can retrieve metadata information by using the `metadata(key)` method, which also returns a Q promise.
+```javascript
+var metadata = yield user.metadata('photo');
+```
+
 ## Future development
 There are plans to extend this plug-in to include the ability to read streams of files and to be able to gather and store metadata. If this is something that interests you, feel free to fork and open a pull request. I will also need tests and those should be coming soon.
