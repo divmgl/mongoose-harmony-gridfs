@@ -18,27 +18,35 @@ npm install mongoose-harmony-gridfs
 
 ## Usage
 ```javascript
-var mongoose = require('mongoose'),
-    plugin = require('mongoose-harmony-gridfs')
+var mongoose = require('mongoose');
+var plugin   = require('mongoose-harmony-gridfs');
 
-var schema = mongoose.Schema({
+var profileSchema = mongoose.Schema({
     name: String,
     joinedOn: Date
 });
 
 var settings = {
+    // These are the keys that will be stored in GridFS
     keys: ['photo', 'thumbnail']
 };
 
-ProfileSchema.plugin(plugin, settings); // Attach GridFS
-var Profile = module.exports = mongoose.model('Profile', schema); // Ready to use GridFS
+profileSchema.plugin(plugin, settings); // Attach GridFS
+var Profile = mongoose.model('Profile', profileSchema); // Ready to use GridFS
+
 ```
 ### Initial setup
 #### Schema setup
-You must attach this plug-in to your schema in order to begin using GridFS. This is necessary because the plug-in needs to know what keys you will be using as document storage. Once the plug-in has been attached, all new instances will contain GridFS functionality.
+You must attach this plug-in to your schema to begin using GridFS. Once the plug-in has been attached, all new schema instances will contain GridFS functionality.
 
 ```javascript
 var user = new Profile() // Has GridFS functionality
+```
+
+You can now access GridFS stores by using the keys you've set up in your schema.
+
+```javascript
+var photo = yield user.photo;
 ```
 
 Please be wary of key usage. Your original schema **should not contain the same keys as the ones included in the plug-in**.
@@ -93,6 +101,3 @@ If you have stored metadata with your file, you can retrieve metadata informatio
 ```javascript
 var metadata = yield user.metadata('photo');
 ```
-
-## Future development
-There are plans to extend this plug-in to include the ability to read streams of files and to be able to gather and store metadata. If this is something that interests you, feel free to fork and open a pull request. I will also need tests and those should be coming soon.
