@@ -16,7 +16,10 @@ You can download this plug-in through NPM.
 npm install mongoose-harmony-gridfs 
 ```
 
-## Usage
+#### Usage
+
+You must attach this plug-in to your schema to begin using GridFS. Once the plug-in has been attached, all new schema instances will contain GridFS functionality.
+
 ```javascript
 var mongoose = require('mongoose');
 var plugin   = require('mongoose-harmony-gridfs');
@@ -34,13 +37,8 @@ var settings = {
 profileSchema.plugin(plugin, settings); // Attach GridFS
 var Profile = mongoose.model('Profile', profileSchema); // Ready to use GridFS
 
-```
-### Initial setup
-#### Schema setup
-You must attach this plug-in to your schema to begin using GridFS. Once the plug-in has been attached, all new schema instances will contain GridFS functionality.
-
-```javascript
 var user = new Profile() // Has GridFS functionality
+
 ```
 
 You can now access GridFS stores by using the keys you've set up in your schema.
