@@ -49,8 +49,11 @@ var photo = yield user.photo;
 
 Please be wary of key usage. Your original schema **should not contain the same keys as the ones included in the plug-in**.
 
-## Settings
-* `key`: Array of strings that determine what keys will be used by the plug-in. Without this option, the plug-in will do nothing.
+### Settings
+
+You can configure the plug-in by providing a settings object. At minimum, a `key` property will be required in order for the plug-in to function.
+
+* `key`: Array of strings that determine what keys will be used by the plug-in.
 * `bucket`: String that determines what GridFS repository should be used. By default it is `'fs'`.
 * `linkPropertyName`: String that determines what the property that is responsible for linking files will be named. By default it is `'_gfs'`.
 
