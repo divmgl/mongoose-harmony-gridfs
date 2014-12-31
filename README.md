@@ -16,7 +16,7 @@ You can download this plug-in through NPM.
 npm install mongoose-harmony-gridfs 
 ```
 
-#### Usage
+## Usage
 
 You must attach this plug-in to your schema to begin using GridFS. Once the plug-in has been attached, all new schema instances will contain GridFS functionality.
 
@@ -49,13 +49,13 @@ var photo = yield user.photo;
 
 Please be wary of key usage. Your original schema **should not contain the same keys as the ones included in the plug-in**.
 
-#### Settings
+## Settings
 * `key`: Array of strings that determine what keys will be used by the plug-in. Without this option, the plug-in will do nothing.
 * `bucket`: String that determines what GridFS repository should be used. By default it is `'fs'`.
 * `linkPropertyName`: String that determines what the property that is responsible for linking files will be named. By default it is `'_gfs'`.
 
-### CRUD operations
-#### Saving
+## CRUD operations
+### Saving
 Once you've created a new instance, you can start saving buffers right away.
 ```javascript
 var user = new Profile()
@@ -71,7 +71,7 @@ var data = { buffer: "This is a random string!", metadata: { user: "mike", id: 2
 user.photo = data;
 ```
 
-#### Loading
+### Loading
 If you can yield values because you are calling from a generator, you can yield for a database value. This will return a buffer with all contents in the file.
 ```javascript
 var photo = yield user.photo;
