@@ -57,6 +57,8 @@ function mongooseFS(schema, options){
 
   schema.methods.metadata = function (key){
     var id = this.get(linkPropertyName + '.' + key);
+    if (id == null) return null;
+
     var gridFS = GridStore(mongoose.connection.db, id);
 
     return Q.promise(function(resolve, reject){
